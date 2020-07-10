@@ -80,7 +80,7 @@ namespace DrX_RatKiller
 
         public class TcpRow
         {
-            // Token: 0x0600001A RID: 26 RVA: 0x00003B40 File Offset: 0x00001D40
+            
             public TcpRow(Form1.IpHelper.TcpRow tcpRow)
             {
                 this.state = tcpRow.state;
@@ -93,8 +93,7 @@ namespace DrX_RatKiller
                 this.remoteEndPoint = new IPEndPoint(address2, port2);
             }
 
-            // Token: 0x17000005 RID: 5
-            // (get) Token: 0x0600001B RID: 27 RVA: 0x00003BE0 File Offset: 0x00001DE0
+            
             public IPEndPoint LocalEndPoint
             {
                 get
@@ -103,8 +102,7 @@ namespace DrX_RatKiller
                 }
             }
 
-            // Token: 0x17000006 RID: 6
-            // (get) Token: 0x0600001C RID: 28 RVA: 0x00003BF8 File Offset: 0x00001DF8
+           
             public IPEndPoint RemoteEndPoint
             {
                 get
@@ -113,8 +111,7 @@ namespace DrX_RatKiller
                 }
             }
 
-            // Token: 0x17000007 RID: 7
-            // (get) Token: 0x0600001D RID: 29 RVA: 0x00003C10 File Offset: 0x00001E10
+            
             public TcpState State
             {
                 get
@@ -123,8 +120,7 @@ namespace DrX_RatKiller
                 }
             }
 
-            // Token: 0x17000008 RID: 8
-            // (get) Token: 0x0600001E RID: 30 RVA: 0x00003C28 File Offset: 0x00001E28
+            
             public int ProcessId
             {
                 get
@@ -133,29 +129,28 @@ namespace DrX_RatKiller
                 }
             }
 
-            // Token: 0x04000023 RID: 35
+           
             private IPEndPoint localEndPoint;
 
-            // Token: 0x04000024 RID: 36
+           
             private IPEndPoint remoteEndPoint;
 
-            // Token: 0x04000025 RID: 37
+           
             private TcpState state;
 
-            // Token: 0x04000026 RID: 38
+            
             private int processId;
         }
 
         public class TcpTable : IEnumerable<Form1.TcpRow>, IEnumerable
         {
-            // Token: 0x0600001F RID: 31 RVA: 0x00003C40 File Offset: 0x00001E40
+           
             public TcpTable(IEnumerable<Form1.TcpRow> tcpRows)
             {
                 this.tcpRows = tcpRows;
             }
 
-            // Token: 0x17000009 RID: 9
-            // (get) Token: 0x06000020 RID: 32 RVA: 0x00003C54 File Offset: 0x00001E54
+            
             public IEnumerable<Form1.TcpRow> Rows
             {
                 get
@@ -164,25 +159,25 @@ namespace DrX_RatKiller
                 }
             }
 
-            // Token: 0x06000021 RID: 33 RVA: 0x00003C6C File Offset: 0x00001E6C
+           
             public IEnumerator<Form1.TcpRow> GetEnumerator()
             {
                 return this.tcpRows.GetEnumerator();
             }
 
-            // Token: 0x06000022 RID: 34 RVA: 0x00003C8C File Offset: 0x00001E8C
+           
             IEnumerator IEnumerable.GetEnumerator()
             {
                 return this.tcpRows.GetEnumerator();
             }
 
-            // Token: 0x04000027 RID: 39
+            
             private IEnumerable<Form1.TcpRow> tcpRows;
         }
 
         public static class ManagedIpHelper
         {
-            // Token: 0x06000023 RID: 35 RVA: 0x00003CAC File Offset: 0x00001EAC
+           
             public static Form1.TcpTable GetExtendedTcpTable(bool sorted)
             {
                 List<Form1.TcpRow> list = new List<Form1.TcpRow>();
@@ -224,86 +219,86 @@ namespace DrX_RatKiller
 
         public static class IpHelper
         {
-            // Token: 0x06000024 RID: 36
+            
             [DllImport("iphlpapi.dll", SetLastError = true)]
             public static extern uint GetExtendedTcpTable(IntPtr tcpTable, ref int tcpTableLength, bool sort, int ipVersion, Form1.IpHelper.TcpTableType tcpTableType, int reserved);
 
-            // Token: 0x04000028 RID: 40
+            
             public const string DllName = "iphlpapi.dll";
 
-            // Token: 0x04000029 RID: 41
+           
             public const int AfInet = 2;
 
-            // Token: 0x0200000A RID: 10
+          
             public enum TcpTableType
             {
-                // Token: 0x0400002B RID: 43
+              
                 BasicListener,
-                // Token: 0x0400002C RID: 44
+              
                 BasicConnections,
-                // Token: 0x0400002D RID: 45
+             
                 BasicAll,
-                // Token: 0x0400002E RID: 46
+            
                 OwnerPidListener,
-                // Token: 0x0400002F RID: 47
+               
                 OwnerPidConnections,
-                // Token: 0x04000030 RID: 48
+    
                 OwnerPidAll,
-                // Token: 0x04000031 RID: 49
+               
                 OwnerModuleListener,
-                // Token: 0x04000032 RID: 50
+          
                 OwnerModuleConnections,
-                // Token: 0x04000033 RID: 51
+              
                 OwnerModuleAll
             }
 
-            // Token: 0x0200000B RID: 11
+           
             public struct TcpTable
             {
-                // Token: 0x04000034 RID: 52
+               
                 public uint length;
 
-                // Token: 0x04000035 RID: 53
+               
                 public Form1.IpHelper.TcpRow row;
             }
 
-            // Token: 0x0200000C RID: 12
+            
             public struct TcpRow
             {
-                // Token: 0x04000036 RID: 54
+               
                 public TcpState state;
 
-                // Token: 0x04000037 RID: 55
+               
                 public uint localAddr;
 
-                // Token: 0x04000038 RID: 56
+         
                 public byte localPort1;
 
-                // Token: 0x04000039 RID: 57
+               
                 public byte localPort2;
 
-                // Token: 0x0400003A RID: 58
+               
                 public byte localPort3;
 
-                // Token: 0x0400003B RID: 59
+               
                 public byte localPort4;
 
-                // Token: 0x0400003C RID: 60
+               
                 public uint remoteAddr;
 
-                // Token: 0x0400003D RID: 61
+                
                 public byte remotePort1;
 
-                // Token: 0x0400003E RID: 62
+                
                 public byte remotePort2;
 
-                // Token: 0x0400003F RID: 63
+                
                 public byte remotePort3;
 
-                // Token: 0x04000040 RID: 64
+                
                 public byte remotePort4;
 
-                // Token: 0x04000041 RID: 65
+                
                 public int owningPid;
             }
         }
